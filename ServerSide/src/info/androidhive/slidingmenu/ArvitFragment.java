@@ -15,6 +15,9 @@ public class ArvitFragment extends Fragment {
 	
 	public ArvitFragment(){}
 	
+	
+	
+	
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
