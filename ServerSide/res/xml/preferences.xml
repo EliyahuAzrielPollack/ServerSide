@@ -2,13 +2,18 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-            android:title="PreferenceCategory A">
+            android:title="מיקום">
 
         <CheckBoxPreference
                 android:key="checkbox_preference"
-                android:title="title_checkbox_preference"
-                android:summary="summary_checkbox_preference" />
-
+                android:layoutDirection="rtl"
+                android:summary="רלוונטי לגבי פורים"
+                android:title="ירושלים " />
+      <CheckBoxPreference
+                android:key="checkbox_preference"
+                android:layoutDirection="rtl"
+                android:summary="רלוונטי לגבי פורים"
+                android:title="ירושלים " />
     </PreferenceCategory>
         <PreferenceCategory
             android:title="PreferenceCategory B">
@@ -64,7 +69,7 @@
     <PreferenceCategory
             android:title="PreferenceCategory B">
 
-        <EditTextPreference
+        <ListPreference /><EditTextPreference
                 android:key="edittext_preference"
                 android:title="title_edittext_preference"
                 android:summary="summary_edittext_preference"
