@@ -4,7 +4,7 @@ import info.androidhive.slidingmenu.adapter.NavDrawerListAdapter;
 import info.androidhive.slidingmenu.model.NavDrawerItem;
 
 import java.util.ArrayList;
-
+import android.preference.PreferenceFragment;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		ActionBar actionBar = getActionBar();
 	   // actionBar.setBackgroundDrawable(new ColorDrawable(0xFF160203));
-
+		//addPreferencesFromResource(R.xml.preferences);
 		mTitle = getTitle();
 		mDrawerTitle = "תפריט ראשי";
 
@@ -187,7 +187,7 @@ public class MainActivity extends Activity {
 			fragment = new ArvitFragment();
 			break;
 		case 3:
-			fragment = new DayTimesFragment();
+			fragment = new SettingFragment();
 			break;
 		case 4:
 			fragment = new ShabbatEnterExitFragment();
