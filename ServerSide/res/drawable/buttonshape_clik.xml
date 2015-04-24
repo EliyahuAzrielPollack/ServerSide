@@ -10,6 +10,7 @@ android:centerColor="@color/app_color"
 android:startColor="@color/app_color"
 android:endColor="@color/app_color"
 android:type="linear"
+
 />
 <padding
 android:left="0dp"
