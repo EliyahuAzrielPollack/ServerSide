@@ -1,5 +1,8 @@
 package DB_management;
 
+import info.androidhive.slidingmenu.MainActivity;
+import info.androidhive.slidingmenu.model.NavDrawerItem;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,14 +10,15 @@ import java.util.List;
 import net.sourceforge.zmanim.hebrewcalendar.HebrewDateFormatter;
 import net.sourceforge.zmanim.hebrewcalendar.JewishCalendar;
 import net.sourceforge.zmanim.hebrewcalendar.JewishDate;
-import android.R.bool;
+import android.R.integer;
+import android.R.string;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DB_api {
-	
+
 	data_base_helper myDbHelper;
 	String chosen_string = "";
 	JewishCalendar jc = new JewishCalendar();
@@ -27,7 +31,6 @@ public class DB_api {
 	  jc.setInIsrael(true); //default false for clarity but not needed. Set to true for Israel
 	  hdf.setHebrewFormat(true);
 	  myDbHelper = new data_base_helper(context);
-	
 		    try {
 		    	myDbHelper.createDataBase();
 		
@@ -62,13 +65,49 @@ public class DB_api {
 		return res;
 	}*/
 	
+	public ArrayList<NavDrawerItem> getAnchorsLabels (String Pray , String select){
+		   
+       String selectQuery = "SELECT anchor_label FROM " + Pray +
+	   " WHERE " + Pray + ".id IN (SELECT " + select + " FROM select_prayer)";   
+
+	   SQLiteDatabase db = myDbHelper.getReadableDatabase();
+	   Cursor cursor = db.rawQuery(selectQuery, null);
+	   ArrayList<NavDrawerItem> res = new ArrayList<NavDrawerItem>();
+	   // looping through all rows and adding to list
+	   if (cursor.moveToFirst()) {
+	        do {
+	        	if(cursor.getString(0) != null)
+	        	   res.add(new NavDrawerItem(cursor.getString(0)));
+	        } while (cursor.moveToNext());
+	    }
+		return res;   
+	}
+	
+	public ArrayList<String> getAnchorsCodes (String Pray , String select){
+		
+       String selectQuery = "SELECT anchor_code FROM " + Pray +
+	   " WHERE " + Pray + ".id IN (SELECT " + select + " FROM select_prayer)";   
+
+	   SQLiteDatabase db = myDbHelper.getReadableDatabase();
+	   Cursor cursor = db.rawQuery(selectQuery, null);
+	   ArrayList<String> res = new ArrayList<String>();
+	   // looping through all rows and adding to list
+	   if (cursor.moveToFirst()) {
+	        do {
+	        	if(cursor.getString(0) != "")
+	        	   res.add(cursor.getString(0));
+	        } while (cursor.moveToNext());
+	    }
+		return res; 
+	}
+	
 	public String getPray (String Pray , String select) {
 		
 	   String selectQuery = "SELECT " + select + " FROM select_prayer";
 	   SQLiteDatabase db = myDbHelper.getReadableDatabase();
 	   Cursor cursor = db.rawQuery(selectQuery, null);
 	   List<String> res = new ArrayList<String>();
-	   String res_2="";
+	   String res_2 = "";
 	   if (cursor.moveToFirst()) {
 	        do {
 	        	res.add(cursor.getString(0));
@@ -86,7 +125,13 @@ public class DB_api {
 		        do {
 		        	res_2 += cursor.getString(0);
 		        } while (cursor.moveToNext());
-		    }
+		   }
+		   
+		   if (cursor.moveToFirst()) {
+		        do {
+		        	res_2 += cursor.getString(0);
+		        } while (cursor.moveToNext());
+		   }
 	   }
 	   return res_2;
 	}

@@ -4,14 +4,15 @@ import info.androidhive.slidingmenu.adapter.NavDrawerListAdapter;
 import info.androidhive.slidingmenu.model.NavDrawerItem;
 
 import java.util.ArrayList;
-import android.preference.PreferenceFragment;
+
+import DB_management.BF;
+import DB_management.DB_api;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -23,11 +24,13 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
+public final class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
 	private LinearLayout mDrawerLinearLayout;//**
 	private ListView mDrawerList;
 	private ListView mDrawerList2;//**
+	private ArrayList<NavDrawerItem> anchorsLabels;
+	private ArrayList<String> anchorsCodes;
 	private ActionBarDrawerToggle mDrawerToggle;
 
 	// nav drawer title
@@ -56,7 +59,6 @@ public class MainActivity extends Activity {
 
 		// load slide menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
 		// nav drawer icons from resources
 		navMenuIcons = getResources()
 				.obtainTypedArray(R.array.nav_drawer_icons);
@@ -82,6 +84,7 @@ public class MainActivity extends Activity {
 		// What's hot, We  will add a counter here
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4]));
 		
+		anchorsLabels = new ArrayList<NavDrawerItem>(); 
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -92,9 +95,9 @@ public class MainActivity extends Activity {
 		adapter_external_list = new NavDrawerListAdapter(getApplicationContext(),
 				navDrawerItems,false);
 		adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
-				navDrawerItems,true);
-		mDrawerList.setAdapter(adapter_internal_list);
-		mDrawerList2.setAdapter(adapter_external_list);//**
+				anchorsLabels,true);
+		mDrawerList.setAdapter(adapter_external_list);
+		mDrawerList2.setAdapter(adapter_internal_list);//**
 
 		// enabling action bar app icon and behaving it as toggle button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -137,6 +140,7 @@ public class MainActivity extends Activity {
 			displayView(position);
 		}
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -185,6 +189,11 @@ public class MainActivity extends Activity {
 			break;
 		case 2:
 			fragment = new ArvitFragment();
+			anchorsLabels = BF.getInstance(this).getAnchorsLabels("arvit_a", "id1");
+			anchorsCodes = BF.getInstance(this).getAnchorsCodes("arvit_a", "id1");
+			adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
+					anchorsLabels,true);
+			mDrawerList2.setAdapter(adapter_internal_list);
 			break;
 		case 3:
 			fragment = new SettingFragment();

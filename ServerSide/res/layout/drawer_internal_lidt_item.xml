@@ -26,7 +26,7 @@
         android:layout_marginStart="10dp"
         android:gravity="left|center_vertical"
         android:textColor="@color/internal_list_item_title"
-        android:width="70dp" />
+        android:width="100dp" />
 
         <!-- android:layout_toRightOf="@id/icon" -->
         
