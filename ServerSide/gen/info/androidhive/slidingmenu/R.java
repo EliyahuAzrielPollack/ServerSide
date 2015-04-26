@@ -135,8 +135,10 @@ public final class R {
         public static final int fragment_home=0x7f030005;
         public static final int fragment_pages=0x7f030006;
         public static final int fragment_photos=0x7f030007;
-        public static final int fragment_whats_hot=0x7f030008;
-        public static final int preferences=0x7f030009;
+        public static final int fragment_welcome_screen_1=0x7f030008;
+        public static final int fragment_welcome_screen_2=0x7f030009;
+        public static final int fragment_welcome_screen_3=0x7f03000a;
+        public static final int preferences=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
