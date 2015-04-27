@@ -14,6 +14,7 @@ import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -32,6 +33,7 @@ public final class MainActivity extends Activity {
 	private ArrayList<NavDrawerItem> anchorsLabels;
 	private ArrayList<String> anchorsCodes;
 	private ActionBarDrawerToggle mDrawerToggle;
+	private String prayerName;//בעתיד יש להחליף בפרפרנס
 
 	// nav drawer title
 	private CharSequence mDrawerTitle;
@@ -56,6 +58,9 @@ public final class MainActivity extends Activity {
 		//addPreferencesFromResource(R.xml.preferences);
 		mTitle = getTitle();
 		mDrawerTitle = "תפריט ראשי";
+		
+		//load the nusah of the prayer
+		prayerName = "arvit_a";
 
 		// load slide menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
@@ -141,6 +146,19 @@ public final class MainActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Slide menu item click listener
+	 * */
+	private class SlideMenu_2_ClickListener implements
+			ListView.OnItemClickListener {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			// display view for selected nav drawer item
+			displayView_2(position, prayerName);
+		}
+	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -183,9 +201,19 @@ public final class MainActivity extends Activity {
 		switch (position) {
 		case 0:
 			fragment = new ShaharitFragment();
+			anchorsLabels = BF.getInstance(this).getAnchorsLabels("shaharit_a", "id2");
+			anchorsCodes = BF.getInstance(this).getAnchorsCodes("shaharit_a", "id2");
+			adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
+					anchorsLabels,true);
+			mDrawerList2.setAdapter(adapter_internal_list);
 			break;
 		case 1:
 			fragment = new MinhaFragment();
+			anchorsLabels = BF.getInstance(this).getAnchorsLabels("minha_a", "id3");
+			anchorsCodes = BF.getInstance(this).getAnchorsCodes("minha_a", "id3");
+			adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
+					anchorsLabels,true);
+			mDrawerList2.setAdapter(adapter_internal_list);
 			break;
 		case 2:
 			fragment = new ArvitFragment();
@@ -197,14 +225,19 @@ public final class MainActivity extends Activity {
 			break;
 		case 3:
 			fragment = new SettingFragment();
+			anchorsLabels.clear();
+			adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
+					anchorsLabels,true);
+			mDrawerList2.setAdapter(adapter_internal_list);
 			break;
 		case 4:
 			fragment = new ShabbatEnterExitFragment();
+			anchorsLabels.clear();
+			adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
+					anchorsLabels,true);
+			mDrawerList2.setAdapter(adapter_internal_list);
 			break;
-		case 5:
-			fragment = new WhatsHotFragment();
-			break;
-
+			
 		default:
 			break;
 		}
@@ -225,6 +258,22 @@ public final class MainActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Diplaying fragment view - at some jump point -  for selected nav drawer list item
+	 * */
+	private void displayView_2(int position, String prayerName ){
+		
+		if(prayerName == "shaharit_a" || prayerName == "shaharit_e" || prayerName == "shaharit_s"){
+			
+		}
+		else if(prayerName == "minha_a" || prayerName == "minha_e" || prayerName == "minha_s"){
+			
+		}
+        else if(prayerName == "arvit_a" || prayerName == "arvit_e" || prayerName == "arvit_s" ){
+			
+		}
+	}
+	
 	@Override
 	public void setTitle(CharSequence title) {
 		mTitle = title;
