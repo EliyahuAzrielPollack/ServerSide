@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="fill"
+    android:orientation="vertical"
+    android:weightSum="6" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="  בחר את הנוסח שלך   "
+            android:background="#DCDCDC"
+            android:textColor="@color/app_color"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center" >
+
+        <RadioButton
+            android:id="@+id/Button022"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="ע&quot;מ"
+            android:textColor="@drawable/text_selctor"
+            android:textSize="30sp" />
+
+        <RadioButton
+            android:id="@+id/angry_1btn"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@drawable/border_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/sparad"
+            android:textColor="@drawable/text_selctor"
+            android:textSize="30sp" />
+   </LinearLayout>
+   
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center" >
+
+        <RadioButton
+            android:id="@+id/Button1022"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="ע&quot;מ"
+            android:textColor="@drawable/text_selctor"
+            android:textSize="30sp" />
+
+        <RadioButton
+            android:id="@+id/angry_btn"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_selector"
+            android:button="@null"
+            android:gravity="center"
+           
+            android:text="@string/sparad"
+            android:textColor="@drawable/text_selctor"
+            android:textSize="30sp" />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height= "0dp" 
+         android:layout_weight="1" >     
+     
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -11,6 +11,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -52,6 +53,11 @@ public final class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		
+		
+
+		
 		setContentView(R.layout.activity_main);
 		ActionBar actionBar = getActionBar();
 	   // actionBar.setBackgroundDrawable(new ColorDrawable(0xFF160203));
@@ -131,6 +137,11 @@ public final class MainActivity extends Activity {
 			// on first time display view for first nav item
 			displayView(0);
 		}
+		
+
+
+		
+		
 	}
 
 	/**
@@ -231,11 +242,19 @@ public final class MainActivity extends Activity {
 			mDrawerList2.setAdapter(adapter_internal_list);
 			break;
 		case 4:
-			fragment = new ShabbatEnterExitFragment();
-			anchorsLabels.clear();
-			adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
-					anchorsLabels,true);
-			mDrawerList2.setAdapter(adapter_internal_list);
+//			fragment = new SettingFragment();
+//			anchorsLabels.clear();
+//			adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
+//					anchorsLabels,true);
+//			mDrawerList2.setAdapter(adapter_internal_list);
+	//		Intent intent = new Intent(this, PageActivity .class);
+			//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
+		//	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	//		startActivity(intent);
+			
+			
+			
+			
 			break;
 			
 		default:
@@ -299,4 +318,11 @@ public final class MainActivity extends Activity {
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
+	
+	
+	
+	
+	
+	
+	
 }
