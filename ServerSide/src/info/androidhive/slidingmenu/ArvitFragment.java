@@ -13,10 +13,11 @@ import android.webkit.WebViewClient;
 
 public class ArvitFragment extends Fragment {
 	
-	public ArvitFragment(){}
-	
-	
-	
+	WebView webContents;
+	final int JumpCode;
+	public ArvitFragment(int jumpCode){
+		JumpCode = jumpCode;
+	}
 	
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -27,27 +28,38 @@ public class ArvitFragment extends Fragment {
 	    builder.append("</link>");
 	    builder.append("<script>");
 	    builder.append("function scrollAnchor(id) {");
-	    builder.append("window.location.hash = id;}");
+	    builder.append("window.location.hash = JumpCode;}");
 	    builder.append("</script>");
 	    builder.append("</head><body lang=EN-US>");
 	    builder.append(BF.getInstance(getActivity()).getPray("arvit_a", "id1"));
 	    builder.append("</body></html>");
 
 	    View rootView = inflater.inflate(R.layout.fragment_pages, container, false);
-	    final WebView webContents = (WebView)rootView.findViewById(R.id.webView1);
+	    webContents = (WebView)rootView.findViewById(R.id.webView1);
 	    WebSettings webSettings = webContents.getSettings();
 	    webSettings.setJavaScriptEnabled(true);
 		webContents.loadDataWithBaseURL("file:///android_asset/", builder.toString(), "text/html", "utf-8", null);
 
-		webContents.setWebViewClient(new WebViewClient(){
+		/*webContents.setWebViewClient(new WebViewClient(){
 
 		    @Override
 		    public void onPageFinished(WebView view, String url) {
-		          String id = "é881234";
+		          String id = "949823";
 		          webContents.loadUrl("javascript:scrollAnchor(" + id + ");");
 		    }
 
-		});
+		});*/
+		
+		if ( JumpCode != -1 ){
+			webContents.setWebViewClient(new WebViewClient(){
+
+			    @Override
+			    public void onPageFinished(WebView view, String url) {
+			          webContents.loadUrl("javascript:scrollAnchor(" + JumpCode + ");");
+			    }
+
+			});
+		}
         return rootView;
     }
 }

@@ -126,12 +126,6 @@ public class DB_api {
 		        	res_2 += cursor.getString(0);
 		        } while (cursor.moveToNext());
 		   }
-		   
-		   if (cursor.moveToFirst()) {
-		        do {
-		        	res_2 += cursor.getString(0);
-		        } while (cursor.moveToNext());
-		   }
 	   }
 	   return res_2;
 	}

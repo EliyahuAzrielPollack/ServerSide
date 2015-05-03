@@ -95,6 +95,7 @@ public final class MainActivity extends Activity {
 		navMenuIcons.recycle();
 
 		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+		mDrawerList2.setOnItemClickListener(new SlideMenu_2_ClickListener());
 
 		// setting the nav drawer list adapter
 		adapter_external_list = new NavDrawerListAdapter(getApplicationContext(),
@@ -216,7 +217,7 @@ public final class MainActivity extends Activity {
 			mDrawerList2.setAdapter(adapter_internal_list);
 			break;
 		case 2:
-			fragment = new ArvitFragment();
+			fragment = new ArvitFragment(-1);
 			anchorsLabels = BF.getInstance(this).getAnchorsLabels("arvit_a", "id1");
 			anchorsCodes = BF.getInstance(this).getAnchorsCodes("arvit_a", "id1");
 			adapter_internal_list = new NavDrawerListAdapter(getApplicationContext(),
@@ -262,15 +263,30 @@ public final class MainActivity extends Activity {
 	 * Diplaying fragment view - at some jump point -  for selected nav drawer list item
 	 * */
 	private void displayView_2(int position, String prayerName ){
-		
+		Fragment fragment = null;
 		if(prayerName == "shaharit_a" || prayerName == "shaharit_e" || prayerName == "shaharit_s"){
-			
+
 		}
 		else if(prayerName == "minha_a" || prayerName == "minha_e" || prayerName == "minha_s"){
 			
 		}
         else if(prayerName == "arvit_a" || prayerName == "arvit_e" || prayerName == "arvit_s" ){
-			
+        	fragment = new ArvitFragment(position);
+		}
+		
+		if (fragment != null) {
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.frame_container, fragment).commit();
+
+			// update selected item and title, then close the drawer
+			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setSelection(position);
+			setTitle(navMenuTitles[position]);
+			mDrawerLayout.closeDrawer(mDrawerLinearLayout);
+		} else {
+			// error in creating fragment
+			Log.e("MainActivity", "Error in creating fragment");
 		}
 	}
 	
